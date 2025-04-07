@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geburtstagsquiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            background-color: #ffe4e1;
+            background-image: url('https://imgs.search.brave.com/WnBNVmSB1ky2zCHzbcFsFV8RIydaYXjisgrX6Qc2utw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmdm/cmUuY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9oZWxsby1raXR0/eS00Ny0yNDh4MzAw/LnBuZw'),
+                              url('https://pngimg.com/uploads/stitch/stitch_PNG15.png'),
+                              url('https://imgs.search.brave.com/645J5E-LJTWNtNE9NNbzXOtu8wfiHoMKtakNQB6drNE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5ncGxheS5jb20v/d3AtY29udGVudC91/cGxvYWRzLzcvRGlz/bmV5LVByaW5jZXNz/ZXMtQmVsbGUtUE5H/LUhELVF1YWxpdHku/cG5n');
+            background-repeat: no-repeat;
+            background-position: left top, right bottom, center;
+            background-size: 150px, 150px, 300px;
+            transition: all 0.5s ease;
+            padding: 30px;
+            flex-direction: column;
+        }
+
+/* Fortschrittsbalken */
+.progress-container {
+    width: 100%;
+    background-color: #ffe4e1;
+    border-radius: 1vw;
+    overflow: hidden;
+    height: 1.5vh;
+    margin-bottom: 0.5vh;
+            margin-top: 20px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #ff85a2;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    font-size: 1.6vh;
+}
+
+.cookie-banner button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.6vh;
+}
+
+.cookie-banner button:hover {
+    background-color: #0056b3;
+}
+
+.cookie-banner a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            max-width: 90%;
+            margin: auto;
+        }
+        .hidden {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+.loader {
+  border: 10px solid #f3f3f3; /* Grauer Hintergrund */
+  border-top: 10px solid #f72585; /* Blau für die obere Linie */
+  border-radius: 50%; /* Runde Form */
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite; /* Animation des Drehen-Effekts */
+  margin: auto;
+  /* position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.cookie-confirmation {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e0ffe0;
+    color: #2e7d32;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 12px;
+    z-index: 9999;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.hidden {
+  display: none;
+}
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #ff85a2;
+            color: white;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #ff5777;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ff85a2;
+            border-radius: 5px;
+            width: 80%;
+            text-align: center;
+            font-size: 16px;
+            display: block;
+            margin: 10px auto;
+        }
+        .quiz-container {
+            position: absolute;
+	    max-width: 80%;
+	    padding: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .answer {
+            background: #ffb6c1;
+            border: 2px solid #ff85a2;
+            color: white;
+            font-weight: bold;
+        }
+        .answer:hover {
+            background: #ff5777;
+        }
+        #error-message {
+            color: red;
+            margin-top: 10px;
+        }
+        .quiz-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 15px;
+            transition: transform 0.3s ease;
+        }
+        .quiz-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Fehlermeldungen */
+        #error-message {
+            color: red;
+            margin-top: 1vh;
+            font-size: 2vw;
+        }
+
+        #questionErrorMessage {
+            color: red;
+            margin-top: 1vh;
+            font-size: 2vw;
+        }
+
+        .quiz-image {
+            width: 100%;
+            max-height: 40vh;
+            object-fit: cover;
+            border-radius: 1vw;
+            margin-top: 2vh;
+            transition: transform 0.3s ease;
+        }
+
+        .quiz-image:hover {
+            transform: scale(1.05);
+        }
+        .quiz-error {
+            background-color: #ffdddd;
+            color: red;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+	    animation: fadeInShake 0.5s ease;
+        }
+
+@keyframes fadeInShake {
+    0% { opacity: 0; transform: translateX(0); }
+    30% { opacity: 1; transform: translateX(-5px); }
+    60% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.blink-effect {
+  animation: blink 0.4s ease-in-out 2;
+}
+
+#interaction-blocker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: transparent; /* durchsichtig, aber blockierend */
+  cursor: not-allowed;
+  pointer-events: all;
+}
+.hidden {
+  display: none;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container" id="login">
+        <h2>Gib den Code ein:</h2>
+        <input type="text" id="codeInput">
+        <button onclick="checkCode()">Weiter</button>
+        <p id="error-message"></p>
+    </div>
+
+<div id="cookie-confirmation" class="cookie-confirmation hidden">
+    ✅ Cookies wurden akzeptiert.
+</div>
+
+    <div class="loader hidden"></div>
+
+    <div class="container hidden quiz-container" id="quiz">
+        <h2 id="question">Frage 1</h2>
+        <img id="questionImage" src="" class="quiz-image hidden">
+        <button class="answer" onclick="checkAnswer(0)">Antwort 1</button>
+        <button class="answer" onclick="checkAnswer(1)">Antwort 2</button>
+        <button class="answer" onclick="checkAnswer(2)">Antwort 3</button>
+        <button class="answer" onclick="checkAnswer(3)">Antwort 4</button>
+        <p id="codeReveal"></p>
+	<div id="quiz-error" class="quiz-error hidden"></div>
+	<div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+    </div>
+<div id="interaction-blocker"></div>
+<div id="cookie-banner" class="cookie-banner">
+    <p>
+        Wir verwenden Cookies. Details findest du in unserer
+        <a href="cookies.pdf" target="_blank">Cookie-Richtlinie (PDF)</a>.
+    </p>
+    <button onclick="acceptCookies()">Akzeptieren</button>
+</div>
+<script>
+const correctCode = "5840";
+const secondCode = "4587";
+let currentQuestion = 0;
+const questions = [
+    { q: "Was ist unsere Lieblingsserie?", img: "bild1.jpg", answers: ["Friends", "How I Met Your Mother", "Stranger Things", "The Office"], correct: 1 },
+    { q: "Wo haben wir unser erstes Date gehabt?", img: "bild2.jpg", answers: ["Kino", "Café", "Park", "Restaurant"], correct: 3 },
+    { q: "Welches Lied erinnert dich an mich?", img: "bild3.jpg", answers: ["Song A", "Song B", "Song C", "Song D"], correct: 2 },
+    { q: "Unser erster Urlaub war wo?", img: "bild4.jpg", answers: ["Paris", "London", "Rom", "Barcelona"], correct: 0 },
+    { q: "Was ist mein Lieblingsessen?", img: "bild5.jpg", answers: ["Pizza", "Sushi", "Burger", "Pasta"], correct: 3 },
+    { q: "Was ist mein Test?", img: "bild5.jpg", answers: ["Banane", "Sushi", "Burger", "Pasta"], correct: 1 }
+];
+
+function acceptCookies() {
+    localStorage.setItem("cookiesAccepted", "true");
+    document.getElementById("cookie-banner").style.display = "none";
+    document.getElementById("cookie-confirmation").classList.remove("hidden");
+    document.getElementById("interaction-blocker").classList.add("hidden"); // Interaktion wieder erlauben
+}
+
+// Direkt beim Laden der Seite prüfen, ob die Cookies bereits akzeptiert wurden
+if (localStorage.getItem("cookiesAccepted") === "true") {
+    document.getElementById("cookie-banner").style.display = "none";
+    document.getElementById("cookie-confirmation").classList.remove("hidden");
+    document.getElementById("interaction-blocker").classList.add("hidden");
+} else {
+    document.getElementById("interaction-blocker").classList.remove("hidden");
+}
+
+
+
+function checkCode() {
+    const input = document.getElementById("codeInput").value;
+    const errorMsg = document.getElementById("error-message");
+    const loader = document.querySelector(".loader"); // Spinner-Element
+
+loader.classList.remove("hidden");  
+
+    if (input === correctCode) {
+        // Spinner anzeigen
+        document.getElementById("login").classList.add("hidden");
+        errorMsg.innerText = "";
+
+        setTimeout(() => {
+            document.getElementById("quiz").classList.remove("hidden");
+            loadQuestion();
+            
+            // Spinner ausblenden, nachdem das Quiz geladen wurde
+            loader.classList.add("hidden");
+        }, 1500); // Warten für 1,5 Sekunden (für den Ladeeffekt)
+    } else {
+	document.getElementById("login").classList.add("hidden");
+	setTimeout(() => {   
+            document.getElementById("login").classList.remove("hidden");
+            document.getElementById("login").classList.add("show");
+	errorMsg.innerText = "Falscher Code!"; 
+ 	loader.classList.add("hidden");
+    	}, 1500);
+   }
+}
+
+function loadQuestion() {
+    const progressBar = document.getElementById("progressBar");
+    const quizContainer = document.getElementById("quiz");
+
+    if (currentQuestion < questions.length) {
+        // Frage und Bild anzeigen
+        document.getElementById("question").innerText = questions[currentQuestion].q;
+        const image = document.getElementById("questionImage");
+        image.src = questions[currentQuestion].img;
+        image.classList.remove("hidden");
+
+        // Antworten setzen
+        document.querySelectorAll(".answer").forEach((btn, index) => {
+            btn.innerText = questions[currentQuestion].answers[index];
+        });
+
+        // Fortschrittsanzeige aktualisieren
+        const progressPercent = (currentQuestion / questions.length) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+
+    } else {
+        // Fortschrittsbalken auf 100% setzen
+        progressBar.style.width = `100%`;
+
+        // Blink-Effekt hinzufügen
+        progressBar.classList.add("blink-effect");
+
+        // Nach dem Blinken den Screen wechseln (0.8s + etwas Puffer)
+        setTimeout(() => {
+            const quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = `<h2>Glückwunsch! Der Code ist: ${secondCode}</h2>`;
+        }, 1000); // Puffer für die Animation
+
+        // Effekt wieder entfernen (optional, falls du nochmal laden willst)
+        setTimeout(() => {
+            progressBar.classList.remove("blink-effect");
+        }, 1200);
+    }
+}
+
+function checkAnswer(index) {
+    const errorDiv = document.getElementById("quiz-error");
+    if (index === questions[currentQuestion].correct) {
+        
+        currentQuestion++;
+        setTimeout(() => {
+            loadQuestion();
+            errorDiv.classList.add("hidden");
+        }, 500);
+    } else {
+        // Animation zurücksetzen
+        errorDiv.classList.remove("hidden");
+        errorDiv.classList.remove("quiz-error"); // entferne kurz die Klasse
+        void errorDiv.offsetWidth; // zwinge Browser zum Reflow
+        errorDiv.classList.add("quiz-error"); // erneut hinzufügen
+        errorDiv.innerText = "Leider falsch, versuch es nochmal!";
+    }
+}
+</script>
+</body>
+</html>
