@@ -192,7 +192,7 @@
             margin: 10px auto;
         }
         .quiz-container {
-            position: absolute;
+            position: relative;
 	    max-width: 80%;
 	    max-height: 80%;
 	    padding: 20px;
@@ -259,6 +259,14 @@
             border-radius: 5px;
             
 	    animation: fadeInShake 0.5s ease;
+		position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 10;
+    text-align: center;
+    pointer-events: none;
+
         }
 
 @keyframes fadeInShake {
@@ -311,9 +319,10 @@
 </div>
 
     <div class="loader hidden"></div>
-   	 <div id="quiz-error" class="quiz-error hidden"></div>
+   	 
 	<div class="container hidden quiz-container" id="quiz">
-        <h2 id="question">Frage 1</h2>
+        <div id="quiz-error" class="quiz-error hidden"></div>
+		<h2 id="question">Frage 1</h2>
         <img id="questionImage" src="" class="quiz-image hidden">
         <button class="answer" onclick="checkAnswer(0)">Antwort 1</button>
         <button class="answer" onclick="checkAnswer(1)">Antwort 2</button>
