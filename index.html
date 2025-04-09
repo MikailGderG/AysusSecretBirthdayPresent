@@ -10,14 +10,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 90vh;
+            height: 78vh;
             background-color: #ffe4e1;
             background-image: url('https://imgs.search.brave.com/WnBNVmSB1ky2zCHzbcFsFV8RIydaYXjisgrX6Qc2utw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmdm/cmUuY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9oZWxsby1raXR0/eS00Ny0yNDh4MzAw/LnBuZw'),
                               url('https://pngimg.com/uploads/stitch/stitch_PNG15.png'),
                               url('https://imgs.search.brave.com/645J5E-LJTWNtNE9NNbzXOtu8wfiHoMKtakNQB6drNE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5ncGxheS5jb20v/d3AtY29udGVudC91/cGxvYWRzLzcvRGlz/bmV5LVByaW5jZXNz/ZXMtQmVsbGUtUE5H/LUhELVF1YWxpdHku/cG5n');
             background-repeat: no-repeat;
             background-position: left top, right bottom, center;
-            background-size: 150px, 150px, 300px;
+            background-size: 130px, 100px, 300px;
             transition: all 0.5s ease;
             padding: 30px;
             flex-direction: column;
@@ -29,9 +29,8 @@
     background-color: #ffe4e1;
     border-radius: 1vw;
     overflow: hidden;
-    height: 1.5vh;
+    height: 0.5vh;
     margin-bottom: 0.5vh;
-            margin-top: 20px;
 }
 
 .progress-bar {
@@ -114,6 +113,31 @@
   100% { transform: rotate(360deg); }
 }
 
+#cookie-info-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  text-decoration: none;
+  background: white;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+#cookie-info-button:hover {
+  background: #f0f0f0;
+}
+
+
 .cookie-confirmation {
     position: fixed;
     bottom: 20px;
@@ -124,7 +148,7 @@
     padding: 10px 15px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    font-size: 12px;
+    font-size: 10 px;
     z-index: 9999;
 }
 
@@ -153,8 +177,8 @@
             background: #ff5777;
         }
         img {
-            max-width: 100%;
-            border-radius: 10px;
+            max-width: 60%;
+            border-radius: 7px;
             margin-top: 10px;
         }
         input {
@@ -170,6 +194,7 @@
         .quiz-container {
             position: absolute;
 	    max-width: 80%;
+	    max-height: 80%;
 	    padding: 20px;
             animation: fadeIn 0.5s ease-in-out;
         }
@@ -191,8 +216,8 @@
             margin-top: 10px;
         }
         .quiz-image {
-            width: 100%;
-            max-height: 300px;
+            width: 50%;
+            max-height: 50%;
             object-fit: cover;
             border-radius: 10px;
             margin-top: 15px;
@@ -232,7 +257,7 @@
             color: red;
             padding: 10px;
             border-radius: 5px;
-            margin-top: 20px;
+            
 	    animation: fadeInShake 0.5s ease;
         }
 
@@ -276,6 +301,9 @@
         <button onclick="checkCode()">Weiter</button>
         <p id="error-message"></p>
     </div>
+<a href="infos.pdf" target="_blank" id="cookie-info-button" title="Mehr über Cookies">
+  ℹ️
+</a>
 
 <div id="cookie-confirmation" class="cookie-confirmation hidden">
     ✅ Cookies wurden akzeptiert.
@@ -300,7 +328,7 @@
 <div id="cookie-banner" class="cookie-banner">
     <p>
         Wir verwenden Cookies. Details findest du in unserer
-        <a href="cookies.pdf" target="_blank">Cookie-Richtlinie (PDF)</a>.
+        <a href="infos.pdf" target="_blank">Cookie-Richtlinie (PDF)</a>.
     </p>
     <button onclick="acceptCookies()">Akzeptieren</button>
 </div>
@@ -309,12 +337,12 @@ const correctCode = "5840";
 const secondCode = "4587";
 let currentQuestion = 0;
 const questions = [
-    { q: "Was ist unsere Lieblingsserie?", img: "bild1.jpg", answers: ["Friends", "How I Met Your Mother", "Stranger Things", "The Office"], correct: 1 },
-    { q: "Wo haben wir unser erstes Date gehabt?", img: "bild2.jpg", answers: ["Kino", "Café", "Park", "Restaurant"], correct: 3 },
-    { q: "Welches Lied erinnert dich an mich?", img: "bild3.jpg", answers: ["Song A", "Song B", "Song C", "Song D"], correct: 2 },
-    { q: "Unser erster Urlaub war wo?", img: "bild4.jpg", answers: ["Paris", "London", "Rom", "Barcelona"], correct: 0 },
-    { q: "Was ist mein Lieblingsessen?", img: "bild5.jpg", answers: ["Pizza", "Sushi", "Burger", "Pasta"], correct: 3 },
-    { q: "Was ist mein Test?", img: "bild5.jpg", answers: ["Banane", "Sushi", "Burger", "Pasta"], correct: 1 }
+    { q: "Wo sind wir uns zum ersten Mal begegnet?", img: "bild1.jpg", answers: ["Auf der Straße", "In der Schule", "In Cami", "Keine Ahnung"], correct: 2 },
+    { q: "Wohin sind wir beim ersten Treffen als erstes hingefahren?", img: "bild2.jpg", answers: ["Über den Rhein nach Moers", "Kaufland", "An den Rhein", "gemeinsam Tanken"], correct: 0 },
+    { q: "Wann haben wir uns zum ersten Mal getroffen?", img: "bild3.jpg", answers: ["17. Mai 2025", "15. Mai 2025", "19. Juni 2025", "18. Mai 2025"], correct: 3 },
+    { q: "Welche Farbe hatte mein Hemd an dem Tag?", img: "bild4.jpg", answers: ["Dunkelblau", "Weiß", "Schwarz", "Hellgrau"], correct: 2 },
+    { q: "Welches Redbull hattest du an dem Tag in der Hand?", img: "bild5.jpg", answers: ["Blau", "Normal", "Weiß", "Grün"], correct: 3 },
+    { q: "Wer ist meine Nummer 1?", img: "bild5.jpg", answers: ["Meine wunderschöne Aysuuuu 😍", " ", " ", "Keine Sorge, keine anderen Optionen. Sensin."], correct: 0 }
 ];
 
 function acceptCookies() {
@@ -395,7 +423,7 @@ function loadQuestion() {
         // Nach dem Blinken den Screen wechseln (0.8s + etwas Puffer)
         setTimeout(() => {
             const quizContainer = document.getElementById("quiz");
-            quizContainer.innerHTML = `<h2>Glückwunsch! Der Code ist: ${secondCode}</h2>`;
+            quizContainer.innerHTML = `<h2>Hadi bakalimm! Hast dir dein Geschenk verdient. Der Code ist: ${secondCode}</h2>`;
         }, 1000); // Puffer für die Animation
 
         // Effekt wieder entfernen (optional, falls du nochmal laden willst)
@@ -420,7 +448,7 @@ function checkAnswer(index) {
         errorDiv.classList.remove("quiz-error"); // entferne kurz die Klasse
         void errorDiv.offsetWidth; // zwinge Browser zum Reflow
         errorDiv.classList.add("quiz-error"); // erneut hinzufügen
-        errorDiv.innerText = "Leider falsch, versuch es nochmal!";
+        errorDiv.innerText = "Schwaaaachhh bebekk bilemedin! 😂😒";
     }
 }
 </script>
