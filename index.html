@@ -295,6 +295,7 @@
     </style>
 </head>
 <body>
+ <div id="quiz-error" class="quiz-error hidden"></div>
     <div class="container" id="login">
         <h2>Gib den Code ein:</h2>
         <input type="text" id="codeInput">
@@ -311,7 +312,6 @@
 
     <div class="loader hidden"></div>
     <div class="container hidden quiz-container" id="quiz">
-	    <div id="quiz-error" class="quiz-error hidden"></div>
         <h2 id="question">Frage 1</h2>
         <img id="questionImage" src="" class="quiz-image hidden">
         <button class="answer" onclick="checkAnswer(0)">Antwort 1</button>
