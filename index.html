@@ -29,7 +29,7 @@
     background-color: #ffe4e1;
     border-radius: 1vw;
     overflow: hidden;
-    height: 0.5vh;
+    height: 1vh;
     margin-bottom: 0.5vh;
 }
 
@@ -310,7 +310,7 @@
 </div>
 
     <div class="loader hidden"></div>
-
+<div id="quiz-error" class="quiz-error hidden"></div>
     <div class="container hidden quiz-container" id="quiz">
         <h2 id="question">Frage 1</h2>
         <img id="questionImage" src="" class="quiz-image hidden">
@@ -319,7 +319,6 @@
         <button class="answer" onclick="checkAnswer(2)">Antwort 3</button>
         <button class="answer" onclick="checkAnswer(3)">Antwort 4</button>
         <p id="codeReveal"></p>
-	<div id="quiz-error" class="quiz-error hidden"></div>
 	<div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
 </div>
