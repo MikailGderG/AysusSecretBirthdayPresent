@@ -306,7 +306,7 @@
 </head>
 <body>
     <div class="container" id="login">
-        <h2>Gib den Code ein:</h2>
+        <h2>Code :</h2>
         <input type="text" id="codeInput">
         <button onclick="checkCode()">Weiter</button>
         <p id="error-message"></p>
@@ -349,7 +349,7 @@ const questions = [
     { q: "Wann haben wir uns zum ersten Mal getroffen?", img: "bild3.jpg", answers: ["17. Mai 2025", "15. Mai 2025", "19. Juni 2025", "18. Mai 2025"], correct: 3 },
     { q: "Welche Farbe hatte mein Hemd an dem Tag?", img: "bild4.jpg", answers: ["Dunkelblau", "Weiß", "Schwarz", "Hellgrau"], correct: 2 },
     { q: "Wohin sind wir beim ersten Treffen als erstes hingefahren?", img: "bild2.jpg", answers: ["Über den Rhein nach Moers", "Kaufland", "An den Rhein", "gemeinsam Tanken"], correct: 0 },
-    { q: "Was haben wir im Kaufland gekauft, aber nie gegessen?", img: "bild5.jpg", answers: ["Schoko Bons", "Cekirdek", "Chips", "Pommes"], correct: 1 },
+    { q: "Was haben wir im Kaufland gekauft, aber nie gegessen?", img: "bild5.jpg", answers: ["Schoko Bons", "Çekirdek", "Chips", "Pommes"], correct: 1 },
     { q: "Welches Redbull hattest du an dem Tag in der Hand?", img: "bild5.jpg", answers: ["Blau", "Normal", "Weiß", "Grün"], correct: 3 },
     { q: "Wo haben wir unser Hintergrundbild geschossen?", img: "bild5.jpg", answers: ["Weihnachtsmarkt Herne", "Innenstadt", "Public Viewing", "Lokmahouse"], correct: 2 },
     { q: "Wie hieß die Messe in Essen, wo wir gemeinsam waren?", img: "bild5.jpg", answers: ["Essen Auto Show", "Essen Motor Show", "Auto Show Essen", "Motor Show Essen"], correct: 1 },
@@ -444,7 +444,7 @@ questions[currentQuestion].answers.forEach((answer, index) => {
         // Nach dem Blinken den Screen wechseln (0.8s + etwas Puffer)
         setTimeout(() => {
             const quizContainer = document.getElementById("quiz");
-            quizContainer.innerHTML = `<h2>Hadi bakalımm! Hast dir dein Geschenk verdient. ${secondCode} ⬇️ </h2>`;
+            quizContainer.innerHTML = `<h2>Hadi bakalımm!<br>Hast dir dein Geschenk verdient.<br><strong>Code:</strong> ${secondCode} ⬇️</h2>`;
         }, 1000); // Puffer für die Animation
 
         // Effekt wieder entfernen (optional, falls du nochmal laden willst)
