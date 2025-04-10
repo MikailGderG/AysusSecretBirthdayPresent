@@ -326,10 +326,7 @@
         <div id="quiz-error" class="quiz-error hidden"></div>
 		<h2 id="question">Frage 1</h2>
         <img id="questionImage" src="" class="quiz-image hidden">
-        <button class="answer" onclick="checkAnswer(0)">Antwort 1</button>
-        <button class="answer" onclick="checkAnswer(1)">Antwort 2</button>
-        <button class="answer" onclick="checkAnswer(2)">Antwort 3</button>
-        <button class="answer" onclick="checkAnswer(3)">Antwort 4</button>
+ <div id="answers-container"></div>
         <p id="codeReveal"></p>
 	<div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
@@ -422,9 +419,16 @@ function loadQuestion() {
         image.classList.remove("hidden");
 
         // Antworten setzen
-        document.querySelectorAll(".answer").forEach((btn, index) => {
-            btn.innerText = questions[currentQuestion].answers[index];
-        });
+        const answersContainer = document.getElementById("answers-container");
+answersContainer.innerHTML = ""; // Vorherige Buttons entfernen
+
+questions[currentQuestion].answers.forEach((answer, index) => {
+    const button = document.createElement("button");
+    button.className = "answer";
+    button.innerText = answer;
+    button.onclick = () => checkAnswer(index);
+    answersContainer.appendChild(button);
+});
 
         // Fortschrittsanzeige aktualisieren
         const progressPercent = (currentQuestion / questions.length) * 100;
