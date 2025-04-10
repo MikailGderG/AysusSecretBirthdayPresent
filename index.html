@@ -444,7 +444,7 @@ questions[currentQuestion].answers.forEach((answer, index) => {
         // Nach dem Blinken den Screen wechseln (0.8s + etwas Puffer)
         setTimeout(() => {
             const quizContainer = document.getElementById("quiz");
-            quizContainer.innerHTML = `<h2>Hadi bakalımm!<br>Hast dir dein Geschenk verdient.<br><strong>Code:</strong> ${secondCode} ⬇️</h2>`;
+            quizContainer.innerHTML = `<h2>Hadi bakalımm!<br>Hast dir dein Geschenk verdient.<br><br> ${secondCode} ⬇️</h2>`;
         }, 1000); // Puffer für die Animation
 
         // Effekt wieder entfernen (optional, falls du nochmal laden willst)
