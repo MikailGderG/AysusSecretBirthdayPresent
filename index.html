@@ -356,7 +356,7 @@ const questions = [
     { q: "Welchen Film haben wir uns im Autokino angeschaut?", img: "bild5.jpg", answers: ["Rüzgara Bırak", "Hals über Kopf", "Alles Steht Kopf 2", "Monster im Kopf"], correct: 2 },
     { q: "Für welches Fach haben wir für deine ZP gelernt?", img: "bild5.jpg", answers: ["Physik", "Mathematik", "Biologie", "Philosophie"], correct: 1 },
     { q: "Extrem wichtige Frage: 4 · 4?", img: "bild5.jpg", answers: ["16", "18"], correct: 1 },
-    { q: "Wer ist meine Nummer 1?", img: "bild5.jpg", answers: ["Meine wunderschöne Aysuuuu 😍", " ", " ", " ", "Keine Sorge, keine anderen Optionen. Sensin."], correct: 0 }
+    { q: "Wer ist meine Nummer 1?", img: "bild5.jpg", answers: ["Meine wunderschöne Aysuuuu 😍", " ", " ", " ", "Keine anderen Optionen. Sensin."], correct: 0 }
 ];
 
 function acceptCookies() {
@@ -444,7 +444,7 @@ questions[currentQuestion].answers.forEach((answer, index) => {
         // Nach dem Blinken den Screen wechseln (0.8s + etwas Puffer)
         setTimeout(() => {
             const quizContainer = document.getElementById("quiz");
-            quizContainer.innerHTML = `<h2>Hadi bakalimm! Hast dir dein Geschenk verdient. Der Code ist: ${secondCode}</h2>`;
+            quizContainer.innerHTML = `<h2>Hadi bakalımm! Hast dir dein Geschenk verdient. ${secondCode} ⬇️ </h2>`;
         }, 1000); // Puffer für die Animation
 
         // Effekt wieder entfernen (optional, falls du nochmal laden willst)
